@@ -2,12 +2,11 @@
 
 #print file contents
 try:
-    f = open("data/constituents_short.csv", "rt") 
-    contents = f.read()
-    print("\nFile contents: ")
-    print(contents)
-    print("")
-    f.close()
+    with open("data/constituents_short.csv", "rt") as f:
+        contents = f.read()
+        print("\nFile contents: ")
+        print(contents)
+        print("")
 except FileNotFoundError:
     print("\nFile does not exist\n")
 except IOError as e:
@@ -21,7 +20,6 @@ try:
     print("File contents in all lowercase:")
     print(contents.lower())
     print("")
-    f.close()
 except FileNotFoundError:
     print("\nFile does not exist\n")
 except IOError as e:
@@ -30,26 +28,24 @@ except IOError as e:
 
 #print file header, file sections using splitlines()
 try:
-    f = open("data/constituents_short.csv", "rt") 
-    contents = f.read()
-    split = contents.splitlines()
+    with open("data/constituents_short.csv", "rt") as f:
+        contents = f.read()
+        split = contents.splitlines()
 
-    print("File header row:")
-    print(f"{split[0]}\n")
+        print("File header row:")
+        print(f"{split[0]}\n")
 
-    print("First 5 lines of data:")
-    for line in range(1,6):
-        print(split[line])
+        print("First 5 lines of data:")
+        for line in range(1,6):
+            print(split[line])
 
-    print("")
+        print("")
 
-    print("Last 5 lines of data:")
-    for line in range(len(split)-5, len(split)):
-        print(split[line])
+        print("Last 5 lines of data:")
+        for line in range(len(split)-5, len(split)):
+            print(split[line])
 
-    print("")
-    
-    f.close()
+        print("")
 except FileNotFoundError:
     print("\nFile does not exist\n")
 except IOError as e:
@@ -58,42 +54,28 @@ except IOError as e:
 
 #print each header element using readline()
 try:
-    f = open("data/constituents_short.csv", "rt") 
-    header_row = f.readline()
-    header_cols = header_row.rsplit(",")
+    with open("data/constituents_short.csv", "rt") as f:
+        header_row = f.readline()
+        header_cols = header_row.rsplit(",")
 
-    print("File headers are:")
-    for i in range(len(header_cols)):
-        print(header_cols[i])
+        print("File headers are:")
+        for i in range(len(header_cols)):
+            print(header_cols[i])
 
-    #print file sections using readlines()
-    contents = f.readlines()
-    print("First 10 lines of data:")
-    for i in range(10):
-        print(contents[i].strip())
+        #print file sections using readlines()
+        contents = f.readlines()
+        print("First 10 lines of data:")
+        for i in range(10):
+            print(contents[i].strip())
 
-    print("")
+        print("")
 
-    print("Last 10 lines of data:")
-    for i in range(len(contents)-10, len(contents)):
-        print(contents[i].rstrip())
+        print("Last 10 lines of data:")
+        for i in range(len(contents)-10, len(contents)):
+            print(contents[i].rstrip())
 
-    print("")
-    f.close()
+        print("")
 except FileNotFoundError:
     print("\nFile does not exist\n")
 except IOError as e:
     print(f"An I/O error occured: {e}")
-
-
-
-
-
-
-# # #using with
-# # #automatically handles file closure at end
-# # with open("more_names.txt") as f:
-# #      content = f.read()
-
-# # with open("names.txt", "w") as f:
-# #     f.write(content)
