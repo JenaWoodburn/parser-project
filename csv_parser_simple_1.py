@@ -4,11 +4,14 @@
 try:
     f = open("data/constituents_short.csv", "rt") 
     contents = f.read()
-    print("File contents: ")
+    print("\nFile contents: ")
     print(contents)
+    print("")
     f.close()
-except:
+except FileNotFoundError:
     print("\nFile does not exist\n")
+except IOError as e:
+    print(f"An I/O error occured: {e}")
 
 
 #print file contents, transformed to all lowercase 
@@ -17,14 +20,17 @@ try:
     contents = f.read()
     print("File contents in all lowercase:")
     print(contents.lower())
+    print("")
     f.close()
-except:
+except FileNotFoundError:
     print("\nFile does not exist\n")
+except IOError as e:
+    print(f"An I/O error occured: {e}")
 
 
 #print file header, file sections using splitlines()
 try:
-    f = open("data/constituents_shoot.csv", "rt") 
+    f = open("data/constituents_short.csv", "rt") 
     contents = f.read()
     split = contents.splitlines()
 
@@ -42,9 +48,12 @@ try:
         print(split[line])
 
     print("")
+    
     f.close()
-except:
+except FileNotFoundError:
     print("\nFile does not exist\n")
+except IOError as e:
+    print(f"An I/O error occured: {e}")
 
 
 #print each header element using readline()
@@ -56,7 +65,6 @@ try:
     print("File headers are:")
     for i in range(len(header_cols)):
         print(header_cols[i])
-
 
     #print file sections using readlines()
     contents = f.readlines()
@@ -72,8 +80,10 @@ try:
 
     print("")
     f.close()
-except:
+except FileNotFoundError:
     print("\nFile does not exist\n")
+except IOError as e:
+    print(f"An I/O error occured: {e}")
 
 
 
