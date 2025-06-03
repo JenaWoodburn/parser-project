@@ -15,11 +15,11 @@ except IOError as e:
 
 #print file contents, transformed to all lowercase 
 try:
-    f = open("data/constituents_short.csv", "rt") 
-    contents = f.read()
-    print("File contents in all lowercase:")
-    print(contents.lower())
-    print("")
+    with open("data/constituents_short.csv", "rt") as f:
+        contents = f.read()
+        print("File contents in all lowercase:")
+        print(contents.lower())
+        print("")
 except FileNotFoundError:
     print("\nFile does not exist\n")
 except IOError as e:
