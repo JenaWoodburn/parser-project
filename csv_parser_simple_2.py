@@ -26,6 +26,7 @@ except IOError as e:
     # Symbol: A
     # Name: Agilent Technologies
     # Sector: Life Sciences Tools & Services
+#creates new file
 try:
     with open("data/constituents_short.csv", "rt") as filein, open("data/out/constituents_short_pp.csv", "w") as fileout:
         #get header elements
@@ -43,6 +44,33 @@ try:
             #rejoin any elements split on ',' inside "", remove ""
             sector = (",".join(elements[2:])).strip('"\n')
             fileout.write((f'{col3}: {sector}\n\n'))
+except FileNotFoundError:
+    print("File does not exist")
+except IOError as e:
+    print(f"An I/O Error occurred: {e}")
+
+
+#append as set of data to an existing file
+
+# #create file by copying 'constituents_short.csv'
+try:
+    with open("data/constituents_short.csv", "rt") as filein, open("data/out/constituents_short_A-B.csv", "w") as fileout:
+        contents = filein.read()
+        fileout.write(contents)
+        fileout.write("\n")
+except FileNotFoundError:
+    print("File does not exist")
+except IOError as e:
+    print(f"An I/O Error occurred: {e}")
+
+
+#append all companies beginning with 'B' to file
+try:
+    with open("data/constituents.csv", "rt") as filein, open("data/out/constituents_short_A-B.csv", "a") as fileout:        
+        contents = filein.readlines()
+        for line in contents:
+            if line.startswith("B"):
+                fileout.write(line)
 except FileNotFoundError:
     print("File does not exist")
 except IOError as e:
